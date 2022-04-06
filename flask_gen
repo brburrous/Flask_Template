@@ -1,0 +1,19 @@
+appname=$1
+filename="${appname}.py"
+pathname="../${appname}"
+
+if [ ! -d $pathname ]
+then
+
+    mkdir ../$appname
+    cp -r ./template_files/. $pathname
+    cd $pathname
+    mv main.py $filename
+    
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install flask
+    export FLASK_APP=$filename
+else 
+    echo "This project name is already in use."
+fi 
